@@ -1,0 +1,139 @@
+{%extends 'nav.html'%}
+{% load static %}
+{%block head%}
+<link rel="stylesheet" href="{% static 'reportStyle.css' %}" type="text/css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<style>
+
+    .search_btn {
+        text-decoration: none;
+        padding: 10px;
+        margin: 10px;
+        color: white;
+        background-color: #222;
+        border: 1px solid white;
+        border-radius: 20px;
+    }
+
+    .search_btn:hover {
+        background-color: white;
+        color: #222;
+        border: 1px solid #222;
+    }
+
+    .search_bar {
+        width: 300px;
+        height: 50px;
+        /* box-shadow: 3px 3px white; */
+        padding: 3px;
+        border: 1px solid white;
+        border-radius: 20px;
+        background-color: #222;
+        color: #93cbff;
+        font-size: 1em;
+    }
+
+    .select {
+        padding: 3px;
+        border: 1px solid white;
+        border-radius: 20px;
+        background-color: #222;
+        color: #93cbff;
+        font-size: 1em;
+    }
+
+    .address_form {
+        width: 200px;
+        margin: 5px;
+    }
+
+    .form {
+        text-align: center;
+        padding: 10px;
+        margin: 20px;
+    }
+    .search {
+        font-size: 1em;
+        font-weight: bolder;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .search:hover {
+        color: #222;
+        background-color: white;
+    }
+</style>
+{%endblock%}
+{%block contents%}
+<br>
+<div class="sub_container" style="font-size: 2em;">
+    <!-- <div class="form" style="font-size: 2em;"> -->
+        Search
+    <!-- </div> -->
+</div>
+<div class="sub_container form" style="display: flex; text-align: left;">
+    <form action="{% url 'search' %}" method="post">
+        {%csrf_token%}
+        <!-- <input type="text" name="search" class="search_bar"> -->
+        도로명주소&nbsp;&nbsp;<input type="text" name="address1" class="postcodify_address address_form select"
+            style="width: 300px;" value="{{address1}}"/>
+        <a id="postcodify_search_button" class="search_btn">주소 검색</a><br />
+        상세주소 1&nbsp;&nbsp;<input type="text" name="address2" class="postcodify_extra_info address_form select" value="{{address2}}"/><br><br>
+        <input type="submit" class="select search" value="허위매물 검색" style="padding: 7.5px;">&nbsp;
+        <a class="select search" href="{% url 'report' %}">전체 보기</a>
+    </form>
+</div>
+<div class="sub_container" style="display: flex;">
+    {% for room in pages %}
+    <a href="{% url 'detail' room.id %}">
+        <div class="card">
+            <table>
+                <tr>
+                    <td>{{room.roomType}} / {{room.contractType}}</td>
+                </tr>
+                <tr>
+                    <td>{{room.address1}} {{room.address2}} {{room.address3}}</td>
+                </tr>
+                <tr>
+                    <td>{{room.updated_at|date:"Y.m.d"}}</td>
+                </tr>
+                <tr>
+                    {% if user == room.author %}
+                    <td>
+                        <a class="page_btn" href="{% url 'update' room.id %}">Update</a>
+                        <a class="page_btn" href="{% url 'delete' room.id %}">Delete</a>
+                    </td>
+                    {% endif %}
+                </tr>
+            </table>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+<br><br>
+<div class="sub_container paginator">
+    <span>{{pages.number}}</span>
+    <span>of</span>
+    <span>{{pages.paginator.num_pages}}</span>
+</div>
+<hr width="20%">
+<br>
+<div class="sub_container pagenator">
+    {%if pages.has_previous%}
+    <a href="?page=1" class="page_btn">First</a>
+    <a href="?page={{pages.previous_page_number}}" class="page_btn">Previous</a>
+    {%endif%}
+
+    {%if pages.has_next%}
+    <a href="?page={{pages.next_page_number}}" class="page_btn">Next</a>
+    <a href="?page={{pages.paginator.num_pages}}" class="page_btn">Last</a>
+    {%endif%}
+</div>
+<script>
+    $(function () {
+        $("#postcodify_search_button").postcodifyPopUp();
+    });
+</script>
+{%endblock%}

@@ -1,0 +1,63 @@
+table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th,
+td {
+    border-bottom: 1px solid #ffffff;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.card {
+    border: 1px solid rgb(255, 128, 166);
+    margin: 1em;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 4px 4px rgb(87, 162, 248);
+}
+
+.card:hover {
+    background-color: rgb(41, 40, 40);
+}
+
+/* Paginator */
+.paginator {
+    color: white;
+}
+
+.page_btn {
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.page_btn:hover {
+    background-color: white;
+    color: #222;
+    border: 1px solid #222;
+}
+
+.comment_btn {
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.comment_btn:hover {
+    background-color: white;
+    color: #222;
+    border: 1px solid #222;
+}

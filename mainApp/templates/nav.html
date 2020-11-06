@@ -1,0 +1,117 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostRoom</title>
+    {%block head%}
+    {%endblock%}
+    <link rel="stylesheet" href="{% static 'mainStyle.css' %}" type="text/css" />
+    <style>
+        @font-face {
+            font-family: 'NEXON Lv1 Gothic OTF';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* neon */
+        .neon {
+            font-family: neon;
+            color: #426DFB;
+            font-size: 1em;
+            line-height: 1em;
+            text-shadow: 0 0 2vw #2356FF;
+            margin-top: 70px;
+            height: 100px;
+        }
+
+        .neon {
+            animation: neon 2s linear infinite;
+            -moz-animation: neon 2s linear infinite;
+            -webkit-animation: neon 2s linear infinite;
+            -o-animation: neon 2s linear infinite;
+        }
+
+        @keyframes neon {
+
+            0%,
+            100% {
+                text-shadow: 0 0 1vw #1041FF, 0 0 2vw #1041FF, 0 0 5vw #1041FF, 0 0 5vw #1041FF, 0 0 .2vw #8BFDFE, .3vw .3vw .1vw #147280;
+                color: #28D7FE;
+            }
+
+            50% {
+                text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
+                color: #146C80;
+            }
+        }
+
+        /* button */
+        .btn {
+            padding: 15px 80px;
+            margin: 10px 4px;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'NEXON Lv1 Gothic OTF';
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            bottom: 0%;
+            left: 0px;
+            width: 100%;
+            height: 1px;
+            background: #6098FF;
+            display: block;
+            -webkit-transform-origin: right top;
+            -ms-transform-origin: right top;
+            transform-origin: right top;
+            -webkit-transform: scale(0, 1);
+            -ms-transform: scale(0, 1);
+            transform: scale(0, 1);
+            -webkit-transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+            transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
+        }
+
+        .btn:hover::before {
+            -webkit-transform-origin: left top;
+            -ms-transform-origin: left top;
+            transform-origin: left top;
+            -webkit-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+            transform: scale(1, 1)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sub_container" style="text-align: center;">
+            <div class="neon">
+                <a  style="font-size: 5em; text-decoration: none;">Ghost Room</a>
+            </div>
+        </div>
+        <div class="sub_container">
+            <div class="nav" style="width: auto; text-align: center;">
+                <a class="btn" href="{% url 'main' %}">🎃 방귀신 🎃</a>
+                <a class="btn" href="{% url 'report' %}">제보목록</a>
+                <a class="btn" href="{% url 'new' %}">제보하기</a>
+                <a class="btn" href="/accounts/logout">로그아웃</a>
+                <a class="btn" href="{%url 'chatbot'%}">1:1 실시간상담</a>
+            </div>
+        </div>
+        {%block contents%}
+        {%endblock%}
+    </div>
+</body>
+
+</html>

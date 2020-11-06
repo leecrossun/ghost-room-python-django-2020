@@ -1,0 +1,68 @@
+{%extends 'nav.html'%}
+{% load static %}
+{%block head%}
+<link rel="stylesheet" href="{% static 'mainStyle.css' %}" type="text/css" />
+<style>
+    .article {
+        
+        font-size: 1.5em;
+        width: 60%;
+        border: 1px solid white;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 1px 1px #ffffff inset, 0 0 5px #ffffff;
+    }
+
+    .question {
+        margin: 15px auto;
+        color: #93cbff;
+        font-weight: bolder;
+    }
+
+    .answer {
+
+    }
+
+    hr {
+        width: 90%;
+    }
+</style>
+{%endblock%}
+{%block contents%}
+<div class="sub_container">
+    <div class="article">
+        <div class="question">
+            🙋‍♂️ 방귀신은 방귀를 잘 뀌도록 도와주는 서비스인가요?
+        </div>
+        <div class="answer">
+            🎃 방귀신은 방 + 귀신의 합성어로, 방 매물은 올라와 있으나 실제로 매매는 하지 않는 고객 낚시용
+            허위매물을 의미합니다. 저희 서비스는 이러한 방귀신을 퇴치할 수 있도록 하는
+            <b>허위매물신고 접수 서비스</b> 입니다.
+        </div>
+    </div>
+    
+    <div class="article">
+        <div class="question">
+            🙋 허위매물이 왜 문제인가요?
+        </div>
+        <div class="answer">
+            🎃 허위매물을 올리는 중개인들은 싸고 좋은 방을 허위로 올려놓고, 정작 고객이 오면 방이 그새 팔렸다고 거짓말을 하고 다른 안좋은 조건의 방을 추천합니다.
+            이는 고객을 기만하는 행위입니다.
+        </div>
+    </div>
+    
+    <div class="article">
+        <div class="question">
+            🙋‍♂️ 법적으로 처벌할 수 있나요?
+        </div>
+        <div class="answer">
+            🎃 공인중개사 법령 제 18조에 따르면 허위매물을 엄연히 <b>불법</b> 입니다.
+            하지만, 현실적으로 모든 허위매물을
+            단속하기는 어렵습니다.
+            그래서 방귀신은 고객신고시스템으로 고객 스스로가 허위매물을 구분할 수
+            있도록 하여 피해를 줄이고자 합니다.
+        </div>
+    </div>
+</div>
+{%endblock%}

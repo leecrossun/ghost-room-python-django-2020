@@ -1,0 +1,58 @@
+{%extends 'nav.html'%}
+{% load static %}
+{%block head%}
+<link rel="stylesheet" href="{% static 'chatroomStyle.css' %}" type="text/css" />
+<link rel="stylesheet" href="{% static 'detailStyle.css' %}" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="{% static 'chatroom.js' %}"></script>
+{%endblock%}
+{%block contents%}
+<br><br>
+<div class="sub_container" style="font-size: 2em;">
+  채팅방
+</div>
+<div clas
+<div class="sub_container" style="width: 50%;">
+  <div class="wrap-btn" style="width: 65%; border: 1px solid white; border-radius: 50px; margin: 10px auto;">
+    <span class="refresh select submit" id="refresh" onClick="refresh()" style="font-size: 1em;">새로고침</span>
+    <a class="delete-room select submit" href="{%url 'chatbot'%}" style="font-size: 1em;">뒤로가기</a>
+    {% if user.is_authenticated or user.username == "hyosun" %}
+    <a class="delete-room select submit" href="{% url 'delete_room' my_room.id %}" style="font-size: 1em;">채팅방 삭제</a>
+    {% endif %}
+  </div>
+  <div class="align-center chatroom">
+    <div id="chat">
+      {% for message in my_room.message_set.all %}
+      {% if message.sender == user.username %}
+      <div class="message-right">
+        <div class="sender sender-right">
+          {{message.sender}}
+        </div>
+        <div class="body body-right">
+          {{message.body}}
+        </div>
+      </div>
+      {% else %}
+      <div class="message-left">
+        <div class="sender sender-left">
+          {{message.sender}}
+        </div>
+        <div class="body body-left">
+          {{message.body}}
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+
+    <form method="POST" action="{% url 'create_message' my_room.id %}" class="align-center">
+      <div class="sub_container" style="width: 100%; display: flex; flex-direction: row;">
+        {% csrf_token %}
+        <div style="width: 80%; margin: 10px 20px;">{{message_form}}</div>
+        <div style="width: 10%; margin: 10px;"><input type="submit" class="btn-submit select submit" value="전송"></div>
+      </div>
+    </form>
+
+  </div>
+</div>
+{%endblock%}

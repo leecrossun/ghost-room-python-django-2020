@@ -1,0 +1,53 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'homeStyle.css' %}" type="text/css" />
+    <title>방귀신</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sub_container neon">
+            <p class="title">GhostRoom</p>
+        </div>
+        <div class="sub_container">
+            <div class="links">
+                {% if user.is_authenticated %}
+                    <a href="/accounts/logout"><div class="link" data-display="LOGOUT"></div></a>
+                    <a href="{% url 'main' %}"><div class="link" data-display="START"></div></a>
+                {%else%}
+                    <a href="{% provider_login_url 'google' %}"><div class="link" data-display="LOGIN"></div></a>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+    <script>
+        var links = document.querySelectorAll('.link')
+        console.log(links)
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i]
+            addClass(link, i)
+        }
+
+        function addClass(link, o) {
+            console.log(link, o)
+            setTimeout(function () {
+                link.classList.add('demo')
+                removeClass(link)
+            }, o * 750)
+        }
+
+        function removeClass(link) {
+            setTimeout(function () {
+                link.classList.remove('demo')
+            }, 750)
+        }
+    </script>
+</body>
+
+</html>

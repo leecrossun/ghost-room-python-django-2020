@@ -1,0 +1,65 @@
+{%extends 'nav.html'%}
+{% load static %}
+{%block head%}
+<link rel="stylesheet" href="{% static 'detailStyle.css' %}" type="text/css" />
+<link rel="stylesheet" href="{% static 'chatbotStyle.css' %}" type="text/css" />
+{%endblock%}
+{%block contents%}
+<br><br>
+<div class="sub_container" style="font-size: 2em;">
+    1:1 실시간 상담
+</div>
+<div class="sub_container" style="width: 70%;">
+<div class="wrap-btn" style="width: 90%; margin: 10px auto;">
+    {% if user.is_authenticated and not user.username == "hyosun" %}
+        <a class="my-btn select submit bot_btn" href="{% url 'create_room' %}">새로 만들기</a>
+    {% endif %}
+    <a class="my-btn select submit bot_btn" href="{% url 'chatbot_unread' %}">안 읽은 채팅방</a>
+    <a class="my-btn select submit bot_btn" href="{% url 'chatbot' %}">전체 채팅방</a>
+</div>
+
+{% if user.is_authenticated %}
+    <table class="align-center report_table">
+        <tr>
+            {% if user.username == "hyosun" %}
+                <td class="td-user tb_head">사용자 이름</td>
+                <td>메시지 내용</td>
+            {%else%}
+                <td class="tb_head">메시지 내용</td>
+            {% endif %}
+            <td class="tb_head">읽음표시</td>
+                <td class="tb_head">입장</td>
+        </tr>
+        {% for room in all_room %}
+            <tr>
+                {% if user.username == "hyosun" %}
+                    <td class="td-user">{{room.user}}</td>
+                {% endif %}
+
+                <td class="td-message">{{room.summary}}</td>
+
+                <td class="td-read">
+                    {% if user.username == "hyosun"%}
+                        {% if not room.admin_read %}
+                            안읽음
+                        {%else%}
+                            읽음
+                        {% endif %}
+                    {% else %}    
+                        {% if not room.user_read %}
+                            안읽음
+                        {%else%}
+                            읽음
+                        {% endif %}
+                    {% endif %}
+                </td>
+            
+                <td class="td-enter">
+                    <a class="enter-room select submit" href="{% url 'chatroom' room.id %}">들어가기</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+</div>
+{%endblock%}

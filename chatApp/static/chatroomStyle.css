@@ -1,0 +1,147 @@
+/* .page_btn {
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.page_btn:hover {
+    background-color: white;
+    color: #222;
+    border: 1px solid #222;
+} */
+.align-center {
+    margin: 0px auto;
+  }
+
+  .wrap-btn {
+    text-align: center;
+    padding: 30px;
+  }
+
+  .refresh,
+  .delete-room {
+    border: 1px solid #ED0000;
+    color: black;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 0px 3%;
+    font-size: 9pt;
+  }
+
+  .delete-room {
+    text-decoration: none;
+  }
+
+  /* .btn-effect:hover {
+    text-decoration: none;
+    background-color: #ED0000;
+    color: white;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .btn-effect2:hover {
+    text-decoration: none;
+    background-color: white;
+    color: #ED0000;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+  } */
+
+  .chatroom {
+    border: 1px solid #93cbff;
+    width: 70%;
+    /* background-color:#93cbff; */
+    padding: 5px;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    /* box-shadow: 5px 5px #93cbff;; */
+    /* box-shadow: 0 1px 1px #93cbff inset, 0 0 8px #93cbff; */
+  }
+
+  .message-right {
+    text-align: right;
+  }
+
+  .sender {
+    margin: 7px 10px 5px 10px;
+  }
+
+  .body {
+    color: #222;
+    display: inline-block;
+    position: relative;
+    max-width: 70%;
+    padding: 10px;
+    padding-top: 8px;
+    background: #DDDDDD;
+    border-radius: 15px;
+    word-wrap: break-word;
+    margin: 0px 20px;
+  }
+
+  .body-left:after {
+    border-top: 15px solid #DDDDDD;
+    border-left: 15px solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -15px;
+  }
+
+  .body-right:after {
+    border-top: 15px solid #DDDDDD;
+    border-left: 0px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 0px solid transparent;
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: -15px;
+  }
+
+  .enter {
+    width: 96%;
+    margin: 10px;
+    margin-top: 30px;
+  }
+
+  .enter-message {
+    color: #93cbff;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+    width: 100%;
+    background-color: #222;
+  }
+
+  textarea:focus,
+  input:not(#submit):focus,
+  .uneditable-input:focus {
+    border-color: #ffffff;
+    box-shadow: 0 1px 1px #ffffff inset, 0 0 8px #ffffff;
+    outline: 0 none;
+  }
+
+  /* .btn-submit {
+    background-color: #ED0000;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0px;
+    width: 50px;
+    border: 1px solid #ED0000;
+  } */
+
+  @media (orientation: portrait) {
+    .chatroom {
+      width: 95%;
+    }
+  }
